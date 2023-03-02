@@ -1,4 +1,4 @@
-# Laboratório 02
+# Laboratório 02 - Piscar LED (Parte 1)
 
 ## 1 - Objetivos
 
@@ -35,7 +35,43 @@ Tempo estimado: 100 minutos
 
 [4] [GNU Make](https://www.gnu.org/software/make/manual/html_node/index.html)
 
-## 4 - Criar novo projeto
+## 4 - Introdução
+
+Quando se trata de desenvolvimento de softwares para computadores geralmente
+podemos utilizar qualquer máquina que possua a mesma arquitetura e execute o
+mesmo sistema operacional. Este tipo de desenvolvimento é chamado de 
+**desenvolvimento nativo**.
+
+Entretanto, a grande maioria dos sistemas embarcados utilizam arquiteturas
+diferentes das arquiteturas utilizadas em computadores. Além disso, estes 
+dispositivos geralmente possuem recursos como memória, capacidade de
+processamento, etc, bastante limitados. Frequentemente não suportam ou não
+utilizam sistemas operacionais, não tem dispositivos de entrada e saída como
+teclados, mouses e monitores. Enfim, não é possível a utilização destes
+dispositivos para desenvolvimento de software.
+
+Para desenvolver softwares para sistemas embarcados utilizamos um computador
+executando um sistema operacional qualquer (Windows, Linux, MacOS) e, por meio
+de um pacote de software especializado, compilamos o sotware para a arquitetura
+desejada. Este tipo de desenvolvimento é chamado de **cross-platform** e o
+processo de compilação é chamado de **cross-compilation**. O pacote de software
+utilzado é chamado de **cross-toolchain**, ou apenas **toolchain**. A máquina
+onde desenvolvemos a aplicação é chamada de **host** e o dispositivo que irá
+executar o binário é chamado de **target**.
+
+Ao longo do nosso curso desenvolveremos softwares que serão executados em
+dispositivos, **targets**, com arquitetura **ARM Cortex-M** e utilizaremos como
+**host** uma máquina com arquitetura **x86** executando um sistema operacional
+Windows, Linux ou MacOS. O pacote de software, **toolchain**, utilizado para
+gerar o binário para a arquitetura **ARM Cortex-M** será o
+**GCC ARM Toolchain**.
+
+Após compilar o programa você terá uma imagem do binário executável no seu
+computador, ainda é necessário uma forma de carregar e executar esta imagem no
+sistema embarcado. A imagem do arquivo binário normalmente é carregada em uma
+memória na placa do dispositivo ou em uma memória integrada ao microcontrolador.
+
+## 5 - Criação de um novo projeto
 
 Crie uma nova pasta para armazenar os arquivos deste projeto.
 
@@ -113,7 +149,7 @@ foo@bar$ arm-none-eabi-gcc -c -g -mcpu=cortex-m4 -mthumb -O0 -Wall main.c -o mai
 
 ![VSCODE](./images/lab-02-build-main.jpg "VSCODE")
 
-## 5 - O arquivo de inicialização
+## 6 - O arquivo de inicialização
 
 Ao desenvolver aplicações voltadas para sistemas operacionais como Windows,
 Linux, MacOS ou até mesmos smartphones, normalmente não nos preocupamos com o
@@ -710,7 +746,7 @@ void default_handler(void)
 }
 ```
 
-## 6 - Automatizar o processo de compilação
+## 7 - Automatizar o processo de compilação
 
 De maneira geral, ao se compilar um programa em linguagem C, devemos passar para
 o compilador uma série de parâmetros. Estes parâmetros são utilizados ajustar
